@@ -8,4 +8,6 @@ console.log("调整位置...");
 console.setPosition(0, 500);
 sleep(2000);
 
+console.clear();//清空控制台。
+
 console.hide();//隐藏控制台
