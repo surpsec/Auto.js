@@ -143,7 +143,7 @@ function share() {
     delay_s(3);
     click("分享到学习强国");
     delay_s(2);
-    click("李嘉龙"); //自行修改
+    click("群名"); //自行修改
     delay_s(1);
     click("发送");
 }
