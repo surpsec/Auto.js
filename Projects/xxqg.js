@@ -1,15 +1,12 @@
 /*
  * @file: xxqg.js
- * @Description: Auto.js学习强国助手 1+6+6+6+6+1+1=27分
+ * @Description: Auto.js学习强国助手 (6+6)+(6+6)+(1+1+2)=28分
  * @version: 2.0
  * @author: Zero
- * @contact: https://github.com/GitACzero/Auto.js
+ * @contact: https://github.com/kessil/AutoXue/
  * @Date: 2019-11-7
  * @Copyright © 2019. All rights reserved.
-*/
-
-console.show();
-auto.waitFor();
+ */
 
 //获取设备信息
 var str = "";
@@ -17,36 +14,26 @@ str += "屏幕宽度:" + device.width;
 str += "\n屏幕高度:" + device.height;
 toast("屏幕宽度为" + device.width + "  " + "屏幕高度为" + device.height);
 
-var 学习强国package = "cn.xuexi.android";
-main();
+var 学习强国 = "cn.xuexi.android";
 
-function main() {
-    loadApp();    //1.打开学习强国App
-    sleep(3000); //2.等待进入主页
+function initial() {
+    auto.waitFor(); //等待获取无障碍辅助权限
+    console.show(); //显示控制台
+    console.setPosition(0, device.height / 4);
 
-    task_video(); //3.任务1：视听学习 
-    back();
-    sleep(3000);
-
-    task_article(); //4.任务2：文章学习
-    back();
-    sleep(3000);
-
-    console.hide(); //隐藏控制台
-    exists(); //退出应用
-}
-
-function loadApp() {
     console.log("本脚本仅供学习测试...");
     console.log("作者：Zero");
     console.log("版本：V1.0");
+    delay(3);
 
-    sleep(3000);
+}
+
+function loadApp() {
     console.log("运行：学习强国");
-    sleep(3000);
+    delay(3);
     log("准备：学习强国主界面..");
-    launch(学习强国package);
-    sleep(6000);
+    launch(学习强国);
+    delay(6);
 }
 
 function task_video() {
@@ -69,40 +56,40 @@ function task_article() {
 
 function 学习() {
     console.log("提示：进入学习...");
-    sleep(3000); //缓冲3秒
+    delay(3);
     click("新思想");
-    sleep(3000);
+    delay(3);
     click("综合");
 
-    sleep(3000);
+    delay(3);
     for (let i = 1; i < 8; i++) {
         console.log("进度：这是第" + i + "篇文章");
         click(device.width / 2, 2 * device.height / 5, device.width / 2, device.height / 4);
-        sleep(5000);        
-        if(text("学习进行时").exists()) {
-            console.log("警告：我要返回..."); 
-            sleep(5000); 
+        delay(5);
+        if (text("学习进行时").exists()) {
+            console.log("警告：我要返回...");
+            delay(5);
             back();
-            sleep(6000);
+            delay(6);
             back();
         }
-        swipe(device.width / 2, 4 * device.height / 5, device.width / 2, device.height / 5, random()*1000);
-        sleep(9000);
-        if (i<3) {
+        swipe(device.width / 2, 4 * device.height / 5, device.width / 2, device.height / 5, random() * delay(1));
+        delay(9);
+        if (i < 3) {
             star();
             share();
-            sleep(5000);
+            delay(5);
         }
         back();
-        sleep(3000);
-        swipe(device.width / 2, 4 * device.height / 5, device.width / 2, device.height / 5, 4500);
+        delay(3);
+        swipe(device.width / 2, 4 * device.height / 5, device.width / 2, device.height / 5, delay(4.5));
     }
 }
 
 function 百灵() {
     sleep(3000); //缓冲3秒
     console.log("提示：进入百灵，每个视频浏览时长8秒...");
-    
+
     //点击一个视频进入
     className("android.widget.ImageView").findOne().parent().click(); //找ImageView的上一层FrameLayout
     var video1 = className("android.widget.FrameLayout").findOne().bounds();
@@ -118,23 +105,28 @@ function 百灵() {
     }
 
     console.log("进度：最后一个视频持续12分钟...");
-    sleep(60000*6); //总时长6分钟
+    sleep(60000 * 6); //总时长6分钟
 }
 
 //滚屏
 function scroll() {
-    swipe(device.width / 2, 4 * device.height / 5, device.width / 2, device.height / 5, 1000);
+    swipe(device.width / 2, 4 * device.height / 5, device.width / 2, device.height / 5, delay(1));
 }
-5
+
+//延迟
+function delay(seconds) {
+    sleep(1000 * seconds);
+}
+
 //分享
 function share() {
 
     bounds(918, 1818, 1026, 1890).clickable().click();
-    sleep(3000);
+    delay(3);
     click("分享到学习强国");
-    sleep(2000);
-    click("填写需要分享的人或者群名");//自行修改
-    sleep(1000);
+    delay(2);
+    click("你要转发的名字或者群名"); //自行修改
+    delay(1);
     click("发送");
 }
 
@@ -143,3 +135,22 @@ function star() {
     bounds(774, 1818, 918, 1890).clickable().click();
 
 }
+
+function main() {
+    initial();
+    loadApp(); //1.打开学习强国App
+    delay(3); //2.等待进入主页
+
+    task_video(); //3.任务1：视听学习 
+    back();
+    delay(3);
+
+    task_article(); //4.任务2：文章学习
+    back();
+    delay(3);
+
+    console.hide(); //隐藏控制台
+    exists(); //退出应用
+}
+
+main();
