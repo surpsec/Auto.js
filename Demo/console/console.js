@@ -1,4 +1,10 @@
-console.show();//显示控制台
+
+// console.show();//显示控制台。这会显示一个控制台的悬浮窗(需要悬浮窗权限)。
+
+// console.hide();//隐藏控制台悬浮窗。
+
+// console.clear();//清空控制台。
+
 
 console.log("调整大小...");
 console.setSize(1000, 1000);

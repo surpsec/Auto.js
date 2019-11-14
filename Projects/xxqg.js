@@ -1,10 +1,10 @@
 /*
  * @file: xxqg.js
  * @Description: Auto.js学习强国助手 (6+6)+(6+6)+(1+1+2)=28分
- * @version: 2.1
+ * @version: 2.0
  * @author: Zero
  * @contact: https://github.com/kessil/AutoXue/
- * @Date: 2019-11-3
+ * @Date: 2019-11-7
  * @Copyright © 2019. All rights reserved.
  */
 
@@ -156,7 +156,7 @@ function share() {
     delay_s(3);
     click("分享到学习强国");
     delay_s(2);
-    click("群名"); //自行修改
+    click("李嘉龙"); //自行修改
     delay_s(1);
     click("发送");
 }
